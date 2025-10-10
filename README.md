@@ -21,17 +21,15 @@ This setup blends intentional design with Arch Linux’s bleeding-edge nature, t
 ### ⚙️ Installation
 Clone the repository:
 ```bash
-git clone git@github.com:JoshuaH032/DOTFILES-Arch-Dragon-Starry-Sky-Rice.git
------
-# Move configs into your .configs folder:
-```
-cp -r DOTFILES-Arch-Dragon-Starry-Sky-Rice/.config/* ~/.config/
-```
-# Reload Hyprland
-```
-hyprctl reload
-```
-Philosophy:
+git clone git@github.com:JoshuaH032/DOTFILES-Arch-Dragon-Starry-Sky-Rice.git```
 
-This rice was built with intention; every element has purpose, every keybind has rhythm.
-It’s not just a configuration; it’s a canvas of code under an infinite sky.
+# Move configs into your .configs folder:
+
+```cp -r DOTFILES-Arch-Dragon-Starry-Sky-Rice/.config/* ~/.config/```
+
+# Reload Hyprland
+
+```hyprctl reload```
+
+# This rice was built with intention; every element has purpose, every keybind has rhythm.
+# It’s not just a configuration; it’s a canvas of code under an infinite sky.
