@@ -1,0 +1,121 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 42,
+  "margin-top": 8,
+  "margin-left": 10,
+  "margin-right": 10,
+
+  // === Layout ===
+  "modules-left": [
+    "custom/wofi",
+    "clock",
+    "hyprland/workspaces",
+    "network"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "temperature",
+    "custom/nvme_temp",
+    "backlight",
+    "pulseaudio",
+    "battery",
+    "tray",
+    "custom/power"
+  ],
+
+  // === Wofi Launcher ===
+  "custom/wofi": {
+    "format": " ",
+    "tooltip": "Open launcher",
+    "on-click": "wofi --show drun",
+    "on-click-right": "wofi --show run"
+  },
+
+  // === Clock ===
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "tooltip-format": "{:%A, %B %d, %Y}"
+  },
+
+  // === Workspaces ===
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "on-click": "hyprctl dispatch workspace {name}",
+    "format-icons": {
+      "urgent": " ",
+      "active": " ",
+      "default": " "
+    }
+  },
+
+  // === Network ===
+  "network": {
+    "interval": 5,
+    "format-wifi": "  {essid}",
+    "format-ethernet": "  eth",
+    "format-disconnected": " ",
+    "tooltip-format": "{ifname} {ipaddr}/{cidr}",
+    "on-click": "nm-connection-editor"
+  },
+
+  // === System Metrics ===
+  "cpu": {
+    "interval": 2,
+    "format": "CPU {usage}%"
+  },
+  "memory": {
+    "interval": 3,
+    "format": "RAM {percentage}%"
+  },
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "interval": 5,
+    "format": "{temperatureF}°F ",
+    "critical-threshold": 85
+  },
+  "custom/nvme_temp": {
+    "exec": "awk '{printf \"%0.0f°F\", ($1/1000)*9/5+32}' /sys/class/hwmon/hwmon3/temp1_input",
+    "interval": 10,
+    "return-type": "plain"
+  },
+
+  // === Hardware Controls ===
+  "backlight": {
+    "device": "intel_backlight",
+    "format": " {percent}%"
+  },
+  "pulseaudio": {
+    "format": " {volume}%",
+    "format-muted": "🔇 {volume}%",
+    "scroll-step": 5,
+    "on-click": "pavucontrol"
+  },
+
+  // === Battery ===
+  "battery": {
+    "states": {
+      "warning": 25,
+      "critical": 10
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-icons": ["","","","",""],
+    "interval": 30
+  },
+
+  // === Tray ===
+  "tray": {
+    "icon-size": 18,
+    "spacing": 6
+  },
+
+  // === Starry Sky Powermenu ===
+  "custom/power": {
+    "format": "",
+    "tooltip": "Power menu",
+    "on-click": "~/.local/bin/powermenu"
+  }
+}

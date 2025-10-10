@@ -1,0 +1,94 @@
+@define-color starlight  #F1E9B9;
+@define-color cobalt     #1C1F4A;
+@define-color twilight   #2B2E60;
+@define-color aurora     #7BA6FF;
+@define-color violet     #A38DFE;
+@define-color ember      #FFB36B;
+@define-color deepnight  #0F1028;
+@define-color mist       #EAE9E3;
+
+/* Global */
+* {
+  font-family: Cantarell, Inter, sans-serif;
+  font-size: 13pt;
+}
+
+window#waybar {
+  background: linear-gradient(135deg, rgba(15,16,40,0.6), rgba(43,46,96,0.4));
+  border: 1px solid rgba(241,233,185,0.15);
+  border-radius: 12px;
+  padding: 5px 10px;
+  margin: 8px 10px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+  color: @mist;
+  transition: background 0.3s ease;
+}
+
+/* Modules */
+#workspaces, #clock, #cpu, #memory, #temperature,
+#custom-nvme_temp, #network, #backlight, #pulseaudio,
+#battery, #tray, #custom-power, #custom-wofi {
+  background: rgba(28,31,74,0.42);
+  padding: 6px 12px;
+  margin: 0 5px;
+  border-radius: 8px;
+  border: 1px solid rgba(241,233,185,0.12);
+  transition: all 0.2s ease;
+}
+
+/* Launcher + Clock */
+#custom-wofi {
+  color: @starlight;
+  font-weight: bold;
+  background: radial-gradient(circle at 20% 30%, rgba(255,179,107,0.2), rgba(28,31,74,0.3));
+}
+#custom-wofi:hover {
+  background: radial-gradient(circle at 20% 30%, rgba(255,179,107,0.35), rgba(28,31,74,0.45));
+}
+
+#clock {
+  color: @aurora;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(123,166,255,0.4);
+  margin-right: 10px;
+}
+
+/* Workspaces */
+#workspaces button {
+  background: transparent;
+  color: @starlight;
+  border: 1px solid transparent;
+  padding: 4px 10px;
+  margin: 0 3px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+#workspaces button.active {
+  background: rgba(255,179,107,0.25);
+  color: @deepnight;
+  border-color: rgba(255,179,107,0.3);
+  box-shadow: 0 0 8px rgba(255,179,107,0.3);
+}
+#workspaces button.urgent {
+  background: rgba(163,141,254,0.3);
+  color: @mist;
+  box-shadow: 0 0 8px rgba(163,141,254,0.3);
+}
+
+/* Accents + Metrics */
+#cpu         { color: @aurora; }
+#memory      { color: @violet; }
+#temperature { color: @ember; }
+#network     { color: @starlight; }
+#pulseaudio  { color: @mist; }
+#battery     { color: @starlight; }
+
+#battery.charging { color: @aurora; }
+#battery.warning  { color: @ember; }
+#battery.critical { color: #FF5555; }
+
+/* Hover sheen */
+#cpu:hover, #memory:hover, #network:hover, #battery:hover {
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 10px rgba(255,255,255,0.05);
+}
