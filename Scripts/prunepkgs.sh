@@ -6,7 +6,9 @@ logdir="$HOME/.local/share/pkg-prune-logs"
 mkdir -p "$logdir"
 
 # Step 1: list orphaned packages
-orphans=$(pacman -Qdtq)
+# pacman exits with status 1 (and prints an error) when no orphans exist, so
+# swallow the non-critical error output while still capturing the list.
+orphans=$(pacman -Qdtq 2>/dev/null || true)
 
 echo "=== Orphaned packages ==="
 if [ -z "$orphans" ]; then
@@ -21,7 +23,7 @@ watched=("grass" "waybar" "swww" "hyprland" "wofi" "gnome-weather")
 
 echo "=== Watched packages installed ==="
 for pkg in "${watched[@]}"; do
-    if pacman -Qq | grep -qx "$pkg"; then
+    if pacman -Qi "$pkg" >/dev/null 2>&1; then
         echo "⚠️  $pkg is installed (linked to your configs)"
     fi
 done
